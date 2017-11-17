@@ -1,0 +1,25 @@
+{
+    "name": "wappr/skeleton",
+    "description": "Silex skeleton",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Levi Durfee",
+            "email": "levi.durfee@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"wappr\\": "src/"},
+        "files": ["config.php"]
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "silex/silex": "~2.0",
+        "illuminate/database": "^5.5",
+        "twig/twig": "^2.4",
+        "respect/validation": "^1.1",
+        "symfony/security-csrf": "^3.3",
+        "monolog/monolog": "^1.23"
+    }
+}
