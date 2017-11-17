@@ -1,0 +1,20 @@
+# how to contribute
+
+This project is still in early stages of development and any contributions are
+welcome. I'm open to suggestions on how things are approached as well as what
+all should be included. There are no tests at the time of writing this, so maybe
+that could be something you start.
+
+You can find us(me) on [Wappr's Gitter](https://gitter.im/wappr-php/skeleton) if you have
+any questions.
+
+## submitting changes
+
+Please create an issue, fork the repo, make your changes, and submit a pull
+request that mentions the issue. I usually like to include the issue number in
+my commit messages, but that is ultimately your decision.
+
+## coding conventions
+
+At this stage of the project, contributions are more important than coding
+conventions. I usually use `php-cs-fixer` to style my code.
