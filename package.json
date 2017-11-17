@@ -7,7 +7,8 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "serve": "cd public; php -S localhost:8080",
-    "test": "phpunit --bootstrap vendor/autoload.php tests"
+    "test": "phpunit --bootstrap vendor/autoload.php tests",
+    "style": "php-cs-fixer fix ./src --using-cache no --rules=@Symfony,-new_with_braces --show-progress estimating"
   },
   "repository": {
     "type": "git",
