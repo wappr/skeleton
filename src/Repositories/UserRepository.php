@@ -6,8 +6,7 @@ use wappr\Models\User;
 use wappr\Contracts\Repositories\UserRepositoryInterface;
 
 /**
- * Class UserRepository
- * @package wappr\Repositories
+ * Class UserRepository.
  */
 class UserRepository implements UserRepositoryInterface
 {
@@ -15,12 +14,12 @@ class UserRepository implements UserRepositoryInterface
      * @param $email
      * @param $password
      * @param int $cost
+     *
      * @return bool
      */
     public function create($email, $password, $cost = BCRYPT_COST)
     {
-        if(!$this->getByEmail($email)->isEmpty())
-        {
+        if (!$this->getByEmail($email)->isEmpty()) {
             return false;
         }
 
@@ -32,13 +31,14 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @param $email
      * @param $password
+     *
      * @return bool
      */
     public function login($email, $password)
     {
         $user = $this->getByEmail($email);
 
-        if($user->isEmpty()) {
+        if ($user->isEmpty()) {
             return false;
         }
 
@@ -47,6 +47,7 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param $email
+     *
      * @return mixed
      */
     private function getByEmail($email)
@@ -57,6 +58,7 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @param $password
      * @param $cost
+     *
      * @return bool|string
      */
     private function password($password, $cost)

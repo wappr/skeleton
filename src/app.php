@@ -18,7 +18,7 @@ $app->register(new SessionServiceProvider());
 $app->register(new CsrfServiceProvider());
 
 $app->register(new TwigServiceProvider(), [
-    'twig.path' => '../templates'
+    'twig.path' => '../templates',
 ]);
 $app->register(new Silex\Provider\MonologServiceProvider(), [
     'monolog.logfile' => __DIR__.'/../logs/development.log',
@@ -26,14 +26,14 @@ $app->register(new Silex\Provider\MonologServiceProvider(), [
 
 $capsule = new Capsule;
 $capsule->addConnection([
-    'driver'    => 'mysql',
-    'host'      => DB_HOSTNAME,
-    'database'  => DB_DATABASE,
-    'username'  => DB_USERNAME,
-    'password'  => DB_PASSWORD,
-    'charset'   => 'utf8',
+    'driver' => 'mysql',
+    'host' => DB_HOSTNAME,
+    'database' => DB_DATABASE,
+    'username' => DB_USERNAME,
+    'password' => DB_PASSWORD,
+    'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
+    'prefix' => '',
 ]);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
