@@ -2,6 +2,7 @@
 
 namespace wappr\Controllers;
 
+use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use wappr\Contracts\Controllers\ControllerInterface;
 
