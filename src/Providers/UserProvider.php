@@ -1,4 +1,6 @@
-<?php namespace wappr\Providers;
+<?php
+
+namespace wappr\Providers;
 
 use wappr\Models\User as UserModel;
 use Symfony\Component\Security\Core\User\User;
@@ -13,7 +15,7 @@ class UserProvider implements UserProviderInterface
     {
         $user = UserModel::where('username', $username)->first();
 
-        if(count($user) == 0) {
+        if (0 == count($user)) {
             throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
         }
 
@@ -31,6 +33,6 @@ class UserProvider implements UserProviderInterface
 
     public function supportsClass($class)
     {
-        return $class === 'Symfony\Component\Security\Core\User\User';
+        return 'Symfony\Component\Security\Core\User\User' === $class;
     }
 }
