@@ -17,6 +17,7 @@ class UserRepository implements UserRepositoryInterface
         $user = new User;
         $user->username = $username;
         $user->password = $password;
+        $user->roles = 'ROLE_NEW';
 
         return $user->save();
     }

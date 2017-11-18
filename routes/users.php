@@ -16,6 +16,4 @@ $app->match('/login/', function(Request $request) use ($app) {
 
 $app->get('/register/', 'user.registration:index');
 
-$app->post('/register/', function(Request $request) use ($app) {
-
-})->bind('_register');
+$app->post('/register/', 'user.registration:store')->bind('_register');

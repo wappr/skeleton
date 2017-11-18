@@ -1,5 +1,8 @@
 <?php
 
+use wappr\Repositories\UserRepository;
+use wappr\Controllers\RegistrationController;
+
 $app['user.registration'] = function() use($app) {
-    return new wappr\Controllers\RegistrationController($app);
+    return new RegistrationController(new UserRepository, $app);
 };
