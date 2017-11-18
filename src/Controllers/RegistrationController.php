@@ -27,6 +27,7 @@ class RegistrationController implements ControllerInterface
 
     public function store(Request $request)
     {
+        // Do some validation
         $username = $request->get('_username');
         $password = $request->get('_password');
 
