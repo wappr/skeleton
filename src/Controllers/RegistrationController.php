@@ -6,16 +6,21 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use wappr\Contracts\Controllers\ControllerInterface;
 use wappr\Contracts\Repositories\UserRepositoryInterface;
+use wappr\Contracts\Providers\ValidationInterface;
 
 class RegistrationController implements ControllerInterface
 {
     private $user;
     private $app;
 
-    public function __construct(UserRepositoryInterface $user, Application $app)
-    {
+    public function __construct(
+        UserRepositoryInterface $user,
+        Application $app,
+        ValidationInterface $validator
+        ) {
         $this->user = $user;
         $this->app = $app;
+        $this->validator = $validator;
     }
 
     public function index(Request $request)
@@ -27,9 +32,13 @@ class RegistrationController implements ControllerInterface
 
     public function store(Request $request)
     {
-        // Do some validation
         $username = $request->get('_username');
         $password = $request->get('_password');
+
+        $valid = $this->isValid($username, $password);
+        if (!$valid) {
+            return $this->app->redirect('/register/');
+        }
 
         if (null != $this->user->getByUsername($username)) {
             $this->app['session']->getFlashBag()->add('error', 'User already exists.');
@@ -42,5 +51,22 @@ class RegistrationController implements ControllerInterface
         $this->user->createUser($username, $password);
 
         return $this->app->redirect('/login/');
+    }
+
+    private function isValid($email, $password)
+    {
+        if (!$this->validator->isEmail($email)) {
+            $this->app['session']->getFlashBag()->add('error', 'Invalid email address.');
+
+            return false;
+        }
+
+        if (!$this->validator->isStrongPassword($password)) {
+            $this->app['session']->getFlashBag()->add('error', 'Password must be 8 characters.');
+
+            return false;
+        }
+
+        return true;
     }
 }

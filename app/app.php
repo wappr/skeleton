@@ -7,6 +7,7 @@ use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\SessionServiceProvider;
+use Silex\Provider\ValidatorServiceProvider;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $app = new Application();
@@ -16,6 +17,7 @@ $app->register(new AssetServiceProvider());
 $app->register(new HttpFragmentServiceProvider());
 $app->register(new SessionServiceProvider());
 $app->register(new CsrfServiceProvider());
+$app->register(new ValidatorServiceProvider());
 $app->register(new TwigServiceProvider(), [
     'twig.path' => '../templates',
 ]);
