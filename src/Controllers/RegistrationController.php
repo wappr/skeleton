@@ -27,8 +27,13 @@ class RegistrationController implements ControllerInterface
 
     public function store(Request $request)
     {
-        // Do some validation
+        /*
+            Do some validation -
+            username should be email
+            password should be at least eight characters
+         */
         $username = $request->get('_username');
+
         $password = $request->get('_password');
 
         if (null != $this->user->getByUsername($username)) {
