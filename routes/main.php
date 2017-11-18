@@ -4,3 +4,4 @@
 
 include 'home.php';
 include 'users.php';
+include 'admin.php';
