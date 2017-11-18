@@ -23,6 +23,7 @@
         "monolog/monolog": "^1.23",
         "symfony/security": "^3.3",
         "symfony/twig-bridge": "^3.3",
-        "symfony/asset": "^3.3"
+        "symfony/asset": "^3.3",
+        "symfony/validator": "^3.3"
     }
 }

@@ -33,8 +33,12 @@ class RegistrationController implements ControllerInterface
             password should be at least eight characters
          */
         $username = $request->get('_username');
-
         $password = $request->get('_password');
+
+        $valid = $this->isValid($username, $password);
+        if(!$valid) {
+            return $this->app->redirect('/register/');
+        }
 
         if (null != $this->user->getByUsername($username)) {
             $this->app['session']->getFlashBag()->add('error', 'User already exists.');
@@ -47,5 +51,24 @@ class RegistrationController implements ControllerInterface
         $this->user->createUser($username, $password);
 
         return $this->app->redirect('/login/');
+    }
+
+    private function isValid($email, $password)
+    {
+        $validator = $this->app['wappr_validator'];
+
+        if(!$validator->isEmail($email)) {
+            $this->app['session']->getFlashBag()->add('error', 'Invalid email address.');
+
+            return false;
+        }
+
+        if(!$validator->isStrongPassword($password)) {
+            $this->app['session']->getFlashBag()->add('error', 'Password must be 8 characters.');
+
+            return false;
+        }
+
+        return true;
     }
 }
