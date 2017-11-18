@@ -3,6 +3,7 @@
 namespace wappr\Controllers;
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 use wappr\Contracts\Controllers\ControllerInterface;
 use wappr\Contracts\Repositories\UserRepositoryInterface;
 
@@ -24,9 +25,8 @@ class RegistrationController implements ControllerInterface
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $request = $this->app['request_stack']->getCurrentRequest();
         $username = $request->get('_username');
         $password = $request->get('_password');
 
