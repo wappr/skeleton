@@ -13,3 +13,13 @@ $app->match('/login/', function(Request $request) use ($app) {
         'csrf'          => $app['csrf.token_manager']->getToken('token_id'),
     ));
 });
+
+$app->get('/register/', function(Request $request) use ($app) {
+    return $app['twig']->render('register.twig', [
+        'csrf' => $app['csrf.token_manager']->getToken('token_id'),
+    ]);
+});
+
+$app->post('/register/', function(Request $request) use ($app) {
+    
+})->bind('_register');

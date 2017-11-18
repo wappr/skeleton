@@ -1,0 +1,10 @@
+{% extends 'layout.twig' %}
+{% block content %}
+<h1>Register</h1>
+<form action="{{ path('_register') }}" method="post">
+    <input type="text" name="_username" />
+    <input type="password" name="_password" value="" />
+    <input type="submit" />
+    <input type="hidden" name="_csrf" value="{{ csrf }}">
+</form>
+{% endblock %}
