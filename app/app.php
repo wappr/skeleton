@@ -16,7 +16,6 @@ $app->register(new AssetServiceProvider());
 $app->register(new HttpFragmentServiceProvider());
 $app->register(new SessionServiceProvider());
 $app->register(new CsrfServiceProvider());
-
 $app->register(new TwigServiceProvider(), [
     'twig.path' => '../templates',
 ]);
