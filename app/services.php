@@ -8,16 +8,13 @@ use wappr\Controllers\AdminController;
 use wappr\Providers\ValidationProvider;
 
 $app['user.registration'] = function() use($app) {
-    return new RegistrationController(new UserRepository, $app);
+    return new RegistrationController(new UserRepository, $app, new ValidationProvider);
 };
 $app['user.login'] = function() use($app) {
     return new LoginController($app);
 };
 $app['admin'] = function() use($app) {
     return new AdminController($app);
-};
-$app['wappr_validator'] = function() use($app) {
-    return new ValidationProvider($app);
 };
 
 class MyRoute extends Route

@@ -12,10 +12,15 @@ class RegistrationController implements ControllerInterface
     private $user;
     private $app;
 
-    public function __construct(UserRepositoryInterface $user, Application $app)
+    public function __construct(
+        UserRepositoryInterface $user,
+        Application $app,
+        ValidationInterface $validator
+        )
     {
         $this->user = $user;
         $this->app = $app;
+        $this->validator = $validator;
     }
 
     public function index(Request $request)
@@ -55,15 +60,13 @@ class RegistrationController implements ControllerInterface
 
     private function isValid($email, $password)
     {
-        $validator = $this->app['wappr_validator'];
-
-        if(!$validator->isEmail($email)) {
+        if(!$this->validator->isEmail($email)) {
             $this->app['session']->getFlashBag()->add('error', 'Invalid email address.');
 
             return false;
         }
 
-        if(!$validator->isStrongPassword($password)) {
+        if(!$this->validator->isStrongPassword($password)) {
             $this->app['session']->getFlashBag()->add('error', 'Password must be 8 characters.');
 
             return false;
