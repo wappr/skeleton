@@ -11,9 +11,7 @@ $app['security.firewalls'] = array(
             'username_parameter' => '_username',
             'password_parameter' => '_password'
         ),
-        'users' => function () use ($app) {
-            return new UserProvider;
-        },
+        'users' => new UserProvider,
         'logout' => array('logout_path' => '/admin/logout', 'invalidate_session' => true),
     )
 );
