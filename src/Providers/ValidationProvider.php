@@ -19,7 +19,7 @@ class ValidationProvider implements ValidationInterface
     {
         $errors = $this->validator->validate($email, new Assert\Email());
 
-        if(count($errors) > 0) {
+        if (count($errors) > 0) {
             return false;
         }
 
@@ -28,7 +28,7 @@ class ValidationProvider implements ValidationInterface
 
     public function isStrongPassword($password)
     {
-        if(strlen($password) < 8) {
+        if (strlen($password) < 8) {
             return false;
         }
 

@@ -18,9 +18,9 @@ class LoginController implements ControllerInterface
     public function index(Request $request)
     {
         return $this->app['twig']->render('login.twig', array(
-            'error'         => $this->app['security.last_error']($request),
+            'error' => $this->app['security.last_error']($request),
             'last_username' => $this->app['session']->get('_security.last_username'),
-            'csrf'          => $this->app['csrf.token_manager']->getToken('token_id'),
+            'csrf' => $this->app['csrf.token_manager']->getToken('token_id'),
         ));
     }
 }

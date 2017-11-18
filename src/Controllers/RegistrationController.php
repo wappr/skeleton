@@ -17,8 +17,7 @@ class RegistrationController implements ControllerInterface
         UserRepositoryInterface $user,
         Application $app,
         ValidationInterface $validator
-        )
-    {
+        ) {
         $this->user = $user;
         $this->app = $app;
         $this->validator = $validator;
@@ -37,7 +36,7 @@ class RegistrationController implements ControllerInterface
         $password = $request->get('_password');
 
         $valid = $this->isValid($username, $password);
-        if(!$valid) {
+        if (!$valid) {
             return $this->app->redirect('/register/');
         }
 
@@ -56,13 +55,13 @@ class RegistrationController implements ControllerInterface
 
     private function isValid($email, $password)
     {
-        if(!$this->validator->isEmail($email)) {
+        if (!$this->validator->isEmail($email)) {
             $this->app['session']->getFlashBag()->add('error', 'Invalid email address.');
 
             return false;
         }
 
-        if(!$this->validator->isStrongPassword($password)) {
+        if (!$this->validator->isStrongPassword($password)) {
             $this->app['session']->getFlashBag()->add('error', 'Password must be 8 characters.');
 
             return false;
