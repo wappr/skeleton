@@ -1,5 +1,3 @@
 <?php
 
-$app->get('/admin/', function() use ($app) {
-    
-})->secure('ROLE_ADMIN');
+$app->get('/admin/', 'admin:index')->secure('ROLE_ADMIN');
