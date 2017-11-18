@@ -26,7 +26,6 @@ $app->register(new Silex\Provider\MonologServiceProvider(), [
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
     'security.firewalls' => [
         'admin',
-        'agent',
     ]
 ));
 

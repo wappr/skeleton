@@ -11,4 +11,4 @@ $app->match('/login/', function(Request $request) use ($app) {
         'error'         => $app['security.last_error']($request),
         'last_username' => $app['session']->get('_security.last_username'),
     ));
-})->bind('admin_login_check');
+});

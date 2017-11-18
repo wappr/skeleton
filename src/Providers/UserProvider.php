@@ -11,13 +11,13 @@ class UserProvider implements UserProviderInterface
 {
     public function loadUserByUsername($username)
     {
-        $user = UserModel::where('username', $username)->get();
+        $user = UserModel::where('username', $username)->first();
 
-        if($user->isEmpty()) {
+        if(count($user) == 0) {
             throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
         }
 
-        return new User($user->username, $user->password, 'ROLE_ADMIN');
+        return new User($user->username, $user->password, ['ROLE_ADMIN']);
     }
 
     public function refreshUser(UserInterface $user)
