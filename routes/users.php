@@ -3,7 +3,7 @@
 use Symfony\Component\HttpFoundation\Request;
 
 $app->get('/admin/', function() use ($app) {
-    return 'hi';
+    return $app['twig']->render('admin.twig');
 });
 
 $app->match('/login/', function(Request $request) use ($app) {

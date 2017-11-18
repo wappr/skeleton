@@ -1,0 +1,4 @@
+{% if is_granted('ROLE_ADMIN') %}
+    <h1>Admin</h1>
+    <a href="{{ path('admin_logout') }}">Logout</a>
+{% endif %}
