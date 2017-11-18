@@ -18,7 +18,7 @@ class RegistrationController implements ControllerInterface
         $this->app = $app;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         return $this->app['twig']->render('register.twig', [
             'csrf' => $this->app['csrf.token_manager']->getToken('token_id'),
