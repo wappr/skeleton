@@ -14,12 +14,8 @@ $app->match('/login/', function(Request $request) use ($app) {
     ));
 });
 
-$app->get('/register/', function(Request $request) use ($app) {
-    return $app['twig']->render('register.twig', [
-        'csrf' => $app['csrf.token_manager']->getToken('token_id'),
-    ]);
-});
+$app->get('/register/', 'user.registration:index');
 
 $app->post('/register/', function(Request $request) use ($app) {
-    
+
 })->bind('_register');
