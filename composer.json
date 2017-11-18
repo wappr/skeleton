@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {"wappr\\": "src/"},
-        "files": ["config.php"]
+        "files": ["app/config.php"]
     },
     "minimum-stability": "stable",
     "require": {
@@ -20,6 +20,9 @@
         "twig/twig": "^2.4",
         "respect/validation": "^1.1",
         "symfony/security-csrf": "^3.3",
-        "monolog/monolog": "^1.23"
+        "monolog/monolog": "^1.23",
+        "symfony/security": "^3.3",
+        "symfony/twig-bridge": "^3.3",
+        "symfony/asset": "^3.3"
     }
 }

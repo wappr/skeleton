@@ -16,13 +16,18 @@ $app->register(new AssetServiceProvider());
 $app->register(new HttpFragmentServiceProvider());
 $app->register(new SessionServiceProvider());
 $app->register(new CsrfServiceProvider());
-
 $app->register(new TwigServiceProvider(), [
     'twig.path' => '../templates',
 ]);
 $app->register(new Silex\Provider\MonologServiceProvider(), [
     'monolog.logfile' => __DIR__.'/../logs/development.log',
 ]);
+
+$app->register(new Silex\Provider\SecurityServiceProvider(), array(
+    'security.firewalls' => [
+        'admin',
+    ]
+));
 
 $capsule = new Capsule;
 $capsule->addConnection([

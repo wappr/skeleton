@@ -1,0 +1,10 @@
+{% extends 'layout.twig' %}
+{% block content %}
+<form action="{{ path('admin_login_check') }}" method="post">
+    {{ error }}
+    <input type="text" name="_username" value="{{ last_username }}" />
+    <input type="password" name="_password" value="" />
+    <input type="submit" />
+    <input type="hidden" name="_csrf" value="{{ csrf }}">
+</form>
+{% endblock %}

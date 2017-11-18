@@ -1,33 +1,15 @@
 <?php
-
 // User routes
-
 use Symfony\Component\HttpFoundation\Request;
 
-$app->get('/users/login/', function() use ($app) {
-    return $app['twig']->render('users/login.twig', [
-        'csrf' => $app['csrf.token_manager']->getToken('token_id')
-    ]);
+$app->get('/admin/', function() use ($app) {
+    return $app['twig']->render('admin.twig');
 });
 
-$app->post('/users/login/', function(Request $request) use ($app) {
-    $app['users.controller']->checkToken($request->request->get('csrf'));
-    return $app['users.controller']->login(
-        $app->escape($request->request->get('username')),
-        $app->escape($request->request->get('password'))
-    );
-});
-
-$app->get('/users/create/', function() use ($app) {
-    return $app['twig']->render('users/register.twig', [
-        'csrf' => $app['csrf.token_manager']->getToken('token_id')
-    ]);
-});
-
-$app->post('/users/create/', function(Request $request) use ($app) {
-    $app['users.controller']->checkToken($request->request->get('csrf'));
-    return $app['users.controller']->create(
-        $app->escape($request->request->get('username')),
-        $app->escape($request->request->get('password'))
-    );
+$app->match('/login/', function(Request $request) use ($app) {
+    return $app['twig']->render('login.twig', array(
+        'error'         => $app['security.last_error']($request),
+        'last_username' => $app['session']->get('_security.last_username'),
+        'csrf'          => $app['csrf.token_manager']->getToken('token_id'),
+    ));
 });
