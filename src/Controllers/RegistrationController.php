@@ -6,6 +6,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use wappr\Contracts\Controllers\ControllerInterface;
 use wappr\Contracts\Repositories\UserRepositoryInterface;
+use wappr\Contracts\Providers\ValidationInterface;
 
 class RegistrationController implements ControllerInterface
 {
@@ -32,11 +33,6 @@ class RegistrationController implements ControllerInterface
 
     public function store(Request $request)
     {
-        /*
-            Do some validation -
-            username should be email
-            password should be at least eight characters
-         */
         $username = $request->get('_username');
         $password = $request->get('_password');
 

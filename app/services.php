@@ -8,7 +8,11 @@ use wappr\Controllers\AdminController;
 use wappr\Providers\ValidationProvider;
 
 $app['user.registration'] = function() use($app) {
-    return new RegistrationController(new UserRepository, $app, new ValidationProvider);
+    return new RegistrationController(
+        new UserRepository,
+        $app,
+        new ValidationProvider($app)
+    );
 };
 $app['user.login'] = function() use($app) {
     return new LoginController($app);
