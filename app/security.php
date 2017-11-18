@@ -4,8 +4,17 @@ $app['security.firewalls'] = array(
     'admin' => array(
         'pattern' => '^/admin/',
         'form' => array('login_path' => '/login', 'check_path' => '/admin/'),
-        'users' => array(
-            'admin' => array('ROLE_ADMIN', '$2y$10$3i9/lVd8UOFIJ6PAMFt8gu3/r5g0qeCJvoSlLCsvMTythye19F77a'),
-        ),
+        'users' => function () use ($app) {
+            return new UserProvider($app['db']);
+        },
+        'logout' => array('logout_path' => '/admin/logout', 'invalidate_session' => true
+    ),
+    'agent' => array(
+        'pattern' => '^/agent/',
+        'form' => array('login_path' => '/login', 'check_path' => '/agent/'),
+        'users' => function () use ($app) {
+            return new UserProvider($app['db']);
+        },
+        'logout' => array('logout_path' => '/agent/logout', 'invalidate_session' => true
     ),
 );
